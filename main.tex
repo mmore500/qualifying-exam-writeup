@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, graphicx, epsfig, fancyhdr, enumitem, breqn, bm, geometry, lastpage, titling, indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage[mathscr]{euscript}
+\usepackage{csquotes}
+\usepackage{hyperref}
+
+ \geometry{
+ a4paper,
+ total={170mm,227mm},
+ left=20mm,
+ top=30mm,
+ }
+
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+
+\title{Homework X}
+\author {Matthew Andres Moreno}
+
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{Matthew Andres Moreno \\ Page \thepage \hfill Class, Professor}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\section*{\thetitle}
+
+\input{tex/content.tex}
+
+\bibliographystyle{apalike}
+\bibliography{bibl}
+
+\end{document}
