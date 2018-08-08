@@ -1,6 +1,12 @@
-## Homework Template
+## qualifying-exam-writeup
 
-A LaTeX template for homework assignments.
+The writeup for my PhD qualifying exam for the Computer Science and Engineering Department at Michigan State University.
+
+### Committee
+
+* Dr. Kevin Liu
+* Dr. Wolfgang Banzhaf
+* Dr. Anil Jain
 
 ### Authorship
 
