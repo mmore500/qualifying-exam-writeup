@@ -3,24 +3,49 @@
 The term multi-agent system (MAS) describes a scenario where a behavior manifests, or in more application-driven context a goal is accomplished, via a collection of interacting autonomous entities \cite{ferber2003agents}.
 An ant colony is a classic example of a multi-agent system.
 Through many interactions between individual ants (including those mediated by stigmergic mechanisms), the colony arrives at collective decisions --- for example, discerning the richer of two food sources \cite{beckers1993modulation} or depositing a certain proportion of the workforce into living bridges that shortcut obstacles \cite{graham2017optimal} --- that optimize the inflow of foraged food.
-Computational and mathematical models of this system are  put to use [cite]
-Can be applied more abstractly, for example, decomposing a power grid in order to achieve efficient policies for power distribution [cite].
+
+The multi-agent system paradigm can provide useful solutions to human problems, too.
+For example, swarm robotics, in which groups of autonomous machines unite to accomplish difficult tasks, might save lives through search and rescue after a disaster, preserve natural landscapes through early detection of forest fires, or protect critical infrastructure like power lines or pipelines through real-time monitoring or even emergency patch jobs.
+For such applications, swarm robotics is hoped to be be simpler, cheaper, more robust, and more capable than existing approaches \cite{tan2013research}.
+Even problems that, at first blush, do not necessarily evoke an intuitive notion of teams of cooperating agents, like the traveling salesman problem \cite{dorigo1997ant, bnasin2013applications} or the set cover problem \cite{rahoual2002parallel,ren2010new}, can be fruitfully attacked by algorithms based on multi-agent systems.
+
+In addition,
+The multi-agent system framework are ubiquitous in nature --- framework appeal across disciplines sociologists \cite{sawyer2003artificial}, biologists \cite{perna2012individual}, physicists \cite{vicsek1995novel}.
+
 
 \section{Heterogeneity}
 
-Interesting multi-agent systems are heterogeneous in some manner.
-Something like standing in between two mirrors.
-A completely homogeneous multi-agent system
+Heterogeneity in multi-agent systems can be understood by contrast to its opposite: absolute homogeneity.
+A completely homogeneous multi-agent system --- where all agents are exactly symmetrically equivalent to each-other in terms of configuration, state, connectivity (e.g., a ring structure) without stochasticity or infinite compute time --- might be imagined something like the experience of standing in between two mirrors.
+Essentially, because at each moment every agent is exactly equivalent to every other agent with respect to the update rule (be it continuous or discrete), the agents remain exactly equivalent in perpetuity.
+This unshakable symmetry fundamentally affects the capabilities of a multi-agent system.
+It has been proven by Angluin, for example, that the leader election problem (in which a set of agents must converge to a state where a single agent is uniquely designated) cannot be solved under such conditions \cite{angluin1980local,banda2015configuration}.
 
+Relaxing restrictions of perfect determinism or exact initial equivalence in configuration, state, or connectivity, heterogeneity may be introduced --- and exploited.
+If each agent holds a unique identifier --- relaxing the assumption of initial equivalence in configuration --- then a leader can readily be elected on the merit of greatest or least identifying value \cite{frederickson1987electing}.
+Bandas et al. demonstrate, in the same vein, how cellular automata can sometimes (not always) reach consensus under the condition of non-uniform state initialization \cite{banda2015configuration} and Itai et al. analyze how stochasticity may be exploited to elect a unique leader among a ring of uniform processors \cite{itai1981symmetry}.
+With respect to heterogeneous connectivity, Antonoiu et al. report a method for deterministic designation of a unique node in a tree graph \cite{antonoiu1996self}.
+
+
+Heterogeneity is ubiquitous in natural multi-agent systems and models of multi-agent systems.
+
+Many (TODO most?) multi-agent systems of scientific and practical interest are heterogeneous in some way (i.e., not absolutely homogeneous).
+
+Interestingly, a little heterogeneity can go a long way in natural systems
+Clearly, a little heterogeneity --- enough to initially disrupt the perfect symmetry of a multi-agent system --- can go a long way.
 
 examples of multi-agent systems.
 
 
-Symmetry breaking, initial conditions, state. \cite{banda2015configuration} \cite{boldi1996symmetry} \cite{angluin1980local}
+\section{Genetic Heterogeneity}
+
+This writeup focuses on a specific type of heterogeneity in multi-agent systems that SOMETHING in the context of artificial evolution: genetic heterogeneity.
+
+Can be applied more abstractly, for example, decomposing a power grid in order to achieve efficient policies for power distribution [cite].
 
 In the context of evolutionary algorithms using genetic programming to control systems of agents, we'll focus on heterogeneousness in terms beyond transient state: genetic heterogeneousness.
 
-\section{Genetic Heterogeneity}
+depends on the lens that the analogy is through.
 
 what is genetic het?
 
