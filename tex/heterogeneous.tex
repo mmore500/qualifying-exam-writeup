@@ -1,6 +1,7 @@
 \section{Multi-Agent Systems}
 
 The term multi-agent system (MAS) describes a scenario where a behavior manifests, or in more application-driven context a goal is accomplished, via a collection of interacting autonomous entities \cite{ferber2003agents}.
+Instead of a single omniescent agent with complete access to all information, the idea is to decompose the solution process into a collection of more humble agents that each only process a subset of the information \cite{panait2005cooperative}. TODO
 An ant colony is a classic instance of a multi-agent system.
 Through many interactions between individual ants (including those mediated by stigmergic mechanisms), the colony arrives at collective decisions --- for example, discerning the richer of two food sources \cite{beckers1993modulation} or depositing a certain proportion of the workforce into living bridges that shortcut obstacles \cite{graham2017optimal} --- that optimize the inflow of foraged food.
 
@@ -35,26 +36,42 @@ Although conditions that break perfect symmetry are common in multi-agent system
 
 \section{Genetic Heterogeneity}
 
-This writeup focuses on a specific type of heterogeneity in multi-agent systems that SOMETHING in the context of artificial evolution: genetic heterogeneity.
-configuration
-convenient, motivated by biological analogy or practicality
-Can be applied more abstractly, for example, decomposing a power grid in order to achieve efficient policies for power distribution [cite].
+Common techniques to optimize the emergent behavior of a multi-agent system primarily fall under the umbrella of reinforcement learning or stochastic search; among methods in the latter category, evolutionary computation enjoys significant popularity \cite{panait2005cooperative}.
+Evolutionary computation centers around an iterative optimization loop where a genetic representations of a set of candidate solutions are successively perturbed by mutational and recombinational operators then filtered based on a performance metric \cite{fogel2000evolutionary}.
+Evolution-inspired methods imply a straightforward approach to inject configuration heterogeneity into multi-agent systems: genetically.
+That is, multi-agent systems composed of interacting agents with independent genetic bases, and thus potentially different behaviors, instead of identically configured (i.e., clonal) agents.
 
-In the context of evolutionary algorithms using genetic programming to control systems of agents, we'll focus on heterogeneousness in terms beyond transient state: genetic heterogeneousness.
+The potential benefits of genetic heterogeneity, or more broadly speaking configuration heterogeneity, largely fall under the theme of specialization.
+In some multi-agent scenarios, task specialization between agents benefits collective functionality.
+For example, Potter et al. present a scenario where three ANN-controlled agents must guide a sheep towards a corral while shielding it from a predatory fox.
+They find that heterogeneous teams of evolved agents outperform homogeneous teams by specializing constituent controllers on fox-fending and sheep-guiding \cite{potter2001heterogeneity}.
+It should be noted, though, that task specialization in evolving multi-agent systems can be accomplished by means besides genetic heterogeneity;
+genetically homogeneous agents may evolve to realize behavioral differentiation by means of agent state \cite{ferrante2015evolution}.
 
-depends on the lens that the analogy is through.
+The issue of controller specialization is magnified in systems with heterogeneous agent capabilities, like ensembles of ground-based robots and aerial drones working in concert \cite{gomes2015cooperative, mathews2012supervised}, or even just agent-specific peculiarities, like manufacturing deviations in unit-to-unit hardware specifications \cite{pugh2007parallel, duarte2016evolution}.
+Again, genetic heterogeneity exclusively
+\cite{tuci2008evolving}
 
-what is genetic het?
-compare/contrast with other het
 
-why genetic het? : specialization
-+ different behaviors (biological analogy; ex shepherd fox sheep \cite{potter2001heterogeneity} )
-  + can also be accomplished by state heterogeneousness (genetic differentiation/using different parts of genome) \cite{ferrante2015evolution}
-+ different capabilities/hardware of the agents \cite{mathews2012supervised}
-  + example?
-  + proof-of-concept work shows can be accomplished also through plasticity, \cite{tuci2008evolving}
-  + variation in unit-to-unit specs \cite{pugh2007parallel} \cite{duarte2016evolution}
+However, looking beyond just the immediate functionality of the genetically heterogeneous collective, some more nuanced benefits in terms of the evolutionary process might be appreciated.
+In terms of , identical components
+However, more radical specialization might be accomplished through different hardware capabilities.
 
-blurred line between individuality and het
+Evolution-inspired methods raise a possibility for injection of heterogeneity into multi-agent systems: genetic heterogeneity, where differently-configured agents.
 
-Given that specialization can be accomplished by other homogeneity-busting means (e.g., internal state/plasticity), why is genetic het useful in evolving multi-agent systems?
+The potential benefits of genetic heterogeneity related to exploiting the potential benefits of configuration heterogeneity.
+LATER, however, there are other potential benefits WRT the process of evolution: open-endedness and diversity preservation etc.
+However, due to the evolutionary algorithm, there are implications of this type of heterogeneity of configuration with respect to evolution because the
+Genetic heterogeneity in natural evolution is facilitated and emerges in sophisticated ways through symbiotic relationships, transitions of individuality, vertical transmission, group selection, and ecological dynamics.
+
+The question of how selection should operate in such a scenario is nontrivial.
+Lots of examples from nature.
+Credit-assignment problem.
+> First, there is the credit assignment problem, which deals with how to apportion the reward obtained at a team level to the individual learners. \cite{panait2005cooperative}
+
+This writeup will describe and compare/contrast three approaches to the credit-assignment problem:
+\begin{itemize}
+  \item aligning individual payoffs and group payoffs \cite{waibel2009genetic},
+  \item fitness metric where absolute group performance and the individual's contribution to group performance (i.e., performance of group withouth individual are considered) \cite{knudson2010coevolution}, and
+  \item cooperative co-evolution, where individuals in populations corresponding to distinct roles are selected by evaluation with only the best-performing individuals from other populations \cite{gomes2015cooperative}.
+\end{itemize}
