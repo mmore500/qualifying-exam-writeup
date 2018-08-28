@@ -1,1 +1,12 @@
 \section{Cooperative coevolution of morphologically heterogeneous robots \cite{gomes2015cooperative}}
+
+Gomes et al. devise a scenario where two agents with very different capabilities --- a drone and a ground robot --- cooperate in order to collect items.
+Ensemble performance is maximized through collection of more items.
+In each evaluation, six items are placed in a rectangular arena, each at a randomly chosen location within in its own unique square quadrant so that they are generally guaranteed to be spread throughout the arena but their specific locations are variable.
+The drone can detect objects over a wider surface area, but has no mechanism to actually pick them up.
+The robot, in contrast, can pick objects up but can only directly sense very nearby objects.
+The drone can detect objects over a large field of view, can detect the relative position of the robot within the same large field of view, can detect its altitude, and can assess its own relative position within the arena.
+The robot can detect the relative position of nearby objects, the relative position of the drone if it falls within its upwards-facing field of view.
+Both robots are operated by simple evolving neural controllers.
+No direct method of communication between the agents, except their relative positions, is available.
+By passing out of the field of view of eachother's sensors --- or, in the case of the robot's upwards facing sensors --- flying at excessive altitude, the drone and robot can lose contact.
