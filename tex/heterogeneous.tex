@@ -1,7 +1,7 @@
 \section{Multi-Agent Systems}
 
 The term multi-agent system (MAS) describes a scenario where a behavior manifests, or in more application-driven context a goal is accomplished, via a collection of interacting autonomous entities \cite{ferber2003agents}.
-Instead of a single omniescent agent with complete access to all information, the idea is to decompose the solution process into a collection of more humble agents that each only process a subset of the information \cite{panait2005cooperative}. TODO
+Although each entity only has available to it just a subset of relevant information and possesses only humble computational and/or physical capabilities, their cooperation can yields sophisticated and useful outcomes  \cite{panait2005cooperative}.
 An ant colony is a classic instance of a multi-agent system.
 Through many interactions between individual ants (including those mediated by stigmergic mechanisms), the colony arrives at collective decisions --- for example, discerning the richer of two food sources \cite{beckers1993modulation} or depositing a certain proportion of the workforce into living bridges that shortcut obstacles \cite{graham2017optimal} --- that optimize the inflow of foraged food.
 
@@ -49,29 +49,25 @@ It should be noted, though, that task specialization in evolving multi-agent sys
 genetically homogeneous agents may evolve to realize behavioral differentiation by means of agent state \cite{ferrante2015evolution}.
 
 The issue of controller specialization is magnified in systems with heterogeneous agent capabilities, like ensembles of ground-based robots and aerial drones working in concert \cite{gomes2015cooperative, mathews2012supervised}, or even just agent-specific peculiarities, like manufacturing deviations in unit-to-unit hardware specifications \cite{pugh2007parallel, duarte2016evolution}.
-Again, genetic heterogeneity exclusively
-\cite{tuci2008evolving}
+In these scenarios, though, genetic heterogeneity is not the only possible remedy;
+plasticity, making controller state responsive to the agent's hardware in order to achieve compensatory adjustments to behavior, has also been demonstrated to identical controllers deployed across heterogeneous hardware to achieve objectives requiring cooperation between agents \cite{tuci2008evolving}.
 
+Although in principle genetic heterogeneity maps intuitively onto the problem of agent specialization, especially in cases with underlying differences in agent hardware, actually evolving genetically heterogeneous cooperating groups to achieve a desired group behavior is nontrivial, in particular with respect of the question of how selection should operate.
+Should a single population of individuals be evolved, with fitness for each evaluated by group performance with subsets of its peers?
+How should such fitness-evaluation groups be composed to ensure compatible and complete sets of specialists?
+Should fitness be determined on the basis of individual attributes instead?
+How should such fitness measures relate to group performance?
+Should diversity-maintenance or speciation mechanisms be introduced in order to prevent losses of lineages corresponding to certain roles and, when crossover is employed, prevent hodgepodge offspring from matings between different specialists?
+Should the long-term evolutionary fates of sets of individuals instead be linked together, with successful teams reproducing together on the merit of their group performance --- each contributing an offspring to a duplicate group?
 
-However, looking beyond just the immediate functionality of the genetically heterogeneous collective, some more nuanced benefits in terms of the evolutionary process might be appreciated.
-In terms of , identical components
-However, more radical specialization might be accomplished through different hardware capabilities.
+Central to many of the questions regarding the evolution of genetically heterogeneous cooperating groups is the credit-assignment problem.
+When the evolutionary objective is a group-level attribute, nailing down the value of individual contributions is not necessarily straightforward \cite{panait2005cooperative}.
+Even when selecting on the basis of group-level performance, an individual agent's reproductive success depends on the composition of the group it lands in; because ``good'' individuals can end up in ``bad'' groups and vice versa, the direct link between individual performance and selection is weakened \cite{waibel2009genetic}.
+Circumventing this problem by redefining individuality with respect to the evolutionary algorithm as the multi-agent collective, in effect a evolving a population of ``team genomes'' \cite{waibel2009genetic}, works well in some cases \cite{miconi2003evolving,bongard2000legion} but can become impracticable at scale due to a prohibitively large search space (i.e., too many parameters) \cite{agogino2008efficient}.
 
-Evolution-inspired methods raise a possibility for injection of heterogeneity into multi-agent systems: genetic heterogeneity, where differently-configured agents.
-
-The potential benefits of genetic heterogeneity related to exploiting the potential benefits of configuration heterogeneity.
-LATER, however, there are other potential benefits WRT the process of evolution: open-endedness and diversity preservation etc.
-However, due to the evolutionary algorithm, there are implications of this type of heterogeneity of configuration with respect to evolution because the
-Genetic heterogeneity in natural evolution is facilitated and emerges in sophisticated ways through symbiotic relationships, transitions of individuality, vertical transmission, group selection, and ecological dynamics.
-
-The question of how selection should operate in such a scenario is nontrivial.
-Lots of examples from nature.
-Credit-assignment problem.
-> First, there is the credit assignment problem, which deals with how to apportion the reward obtained at a team level to the individual learners. \cite{panait2005cooperative}
-
-This writeup will describe and compare/contrast three approaches to the credit-assignment problem:
+This writeup will describe, compare, and contrast three approaches to the credit-assignment problem:
 \begin{itemize}
-  \item aligning individual payoffs and group payoffs \cite{waibel2009genetic},
-  \item fitness metric where absolute group performance and the individual's contribution to group performance (i.e., performance of group withouth individual are considered) \cite{knudson2010coevolution}, and
-  \item cooperative co-evolution, where individuals in populations corresponding to distinct roles are selected by evaluation with only the best-performing individuals from other populations \cite{gomes2015cooperative}.
+  \item designing individual payoffs (i.e., contributions of individual actions towards individual fitness) in order to align with individual contribution to group success \cite{waibel2009genetic},
+  \item calculating fitness as the difference between global performance and estimated group performance without the contributions of an agent \cite{knudson2010coevolution}, and
+  \item cooperative co-evolution, where individuals in distinct subpopulations corresponding to distinct roles are selected by evaluation with only the best-performing individuals from other subpopulations \cite{gomes2015cooperative}.
 \end{itemize}
