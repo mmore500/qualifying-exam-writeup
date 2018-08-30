@@ -1,20 +1,18 @@
 \section{Genetic team composition and level of selection in the evolution of cooperation \cite{waibel2009genetic}}
 
-Waibel et al. study a simple simulated foraging problem designed to allow straightforward assessment --- and experimental manipulation --- of the amount of cooperation required.
-
-wheeled robots with basic distance-sensing capabilities without provision for direct robot-to-robot communication.
-Control for the robots was accomplished through a fully-connected feed-forward artificial neural network with a single three-node hidden layer.
-Output directly to the left and right motors.
-Although the micro-robots were based on available robotic units (pictured in the paper), all reported experimental results were attained exclusively in simulation for efficiency's sake.
-
-ten robots
-
-The foraging task was to push tokens representing food to a certain wall of a fully-enclosed rectangular arena.
-Two token types were considered: small tokens, which could be transported by a single robot, and large tokens, which were too heavy for a single robot but which could be transported by joint effort between two robots.
-
-Three foraging tasks were devised:
+Waibel et al. study a simple ten-agent foraging problem designed to allow straightforward assessment --- and experimental manipulation --- of the amount of cooperation required.
+To collect food, agents pushed weighted tokens to a certain wall of a fully-enclosed rectangular arena.
+Two token types were considered: small tokens, which could be transported by a single agent, and large tokens, which were too heavy for a single agent but which could be transported by joint effort between two agents.
+Three foraging task variants were studied:
 \begin{enumerate}
-\item Individual Foraging, where only small tokens were present and fitness was determined by a robot's own foraging contributions (i.e., the number of tokens it pushed to the home wall), so coordinated efforts were not required and payoff was not shared.
-\item Cooperative Foraging, where only large tokens were present and fitness was determined by the total token foraging of the collective
-\item Altruistic Cooperative Foraging, where large tokens, with benefits shared among the entire collective, and small tokens, with benefits restricted to each token's forager, were available
+\item Individual Foraging, where only small tokens were present and fitness was determined by an agent's own foraging contributions (i.e., the number of tokens it pushed to the home wall), so coordinated efforts were not required and payoff was not shared;
+\item Cooperative Foraging, where only large tokens were present and fitness was determined by the total token foraging of the collective; and
+\item Altruistic Cooperative Foraging, where large tokens, with benefits shared among the entire collective, and small tokens, with benefits restricted to each token's forager, were available.
 \end{enumerate}
+
+Agents take the form of simulated small two-wheeled robots.
+Although the simulated robots were based on available physical robotic units (pictured in the paper), all reported experimental results were attained exclusively in simulation for efficiency's sake.
+These robots have basic distance-sensing and vision capabilities but lack any means for direct robot-to-robot communication.
+Control for the robots was accomplished through a fully-connected feed-forward artificial neural network with a single three-node hidden layer.
+Neural net output controls rotation of the left and right motors.
+A fixed neural network topology is enforced; only neural net weights evolve.
