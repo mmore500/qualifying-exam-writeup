@@ -16,3 +16,18 @@ These robots have basic distance-sensing and vision capabilities but lack any me
 Control for the robots was accomplished through a fully-connected feed-forward artificial neural network with a single three-node hidden layer.
 Neural net output controls rotation of the left and right motors.
 A fixed neural network topology is enforced; only neural net weights evolve.
+
+Waible et al. compare the evolution of genetically homogenous versus heterogenous teams with individual versus team selection.
+In heterogneous team treatments, teams were populated member-by-member through fitness-weighted random draws of members from the previous generation.
+In homogenous team treatments, teams were populated through clonal multiplication of a single fitness-weighted random draw from members of the previous generation.
+Under team selection, fitness-weighted random draws were conducted by first performing a roulette-wheel draw among previous-generation teams (each team's probability of selection proportional to the mean fitness of its members) followed by an evenly-weighted random draw among the selected team's members.
+Under team selection, fitness-weighted random draws were performed from all individuals in the previous generation, with each individual's probability of selection proportional to its individual fitness.
+
+For the Individual Foraging task, individual and team selection on homogenous teams was exactly equivalent under this particular implementation, and, as expected, yielded champion teams with statistically indistinguishable net foraging performance after 300 generations.
+After adjustments to take into account the greater number of distinct genomes evaluated when non-clonal groups are employed, champion performance under heterogenous team individual selection was also found to be indistinguishable compared to team and individual selection with homogenous teams.
+However, team selection on heterogenous teams yielded much lower champion performance.
+Credit assignment problems even when cooperation not involved TODO
+
+For the Cooperative Foraging Task
+
+Finally, for the Altruistic Cooperative Foraging Task,
