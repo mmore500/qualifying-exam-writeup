@@ -36,8 +36,25 @@ If the drone and robot start out of range, they must evolve to locate each other
 If the drone can control its own altitude, it must evolve to regulate its own altitude (and fly at an appropriate altitude for cooperation).
 Under each of these treatments, fully successful behaviors (i.e., the team collects all six items in the allocated time) evolve in some, but not most, evolutionary runs.
 
+Gomes et al. determine convergence to mediocre stable states where the robots do not cooperate as the root of challenges faced evolving effective cooperative behavior under the three more challenging treatments \cite{panait2010theoretical}.
+They arrive at this diagnosis after noting that, in runs where successful behaviors are achieved, a significantly greater diversity of behaviors are explored.
+(Specifically, the mean pairwise difference between all team behaviors, represented as 4-D vectors, encountered during the evolutionary run is significantly greater in runs where successful behaviors were achieved.)
+In order to break evolution out of the stable state traps observed in the three more challenging treatments, Gomes et al. try incremental evolution and novelty-based selection.
+Applying incremental co-evolution, team selection is sequentially performed for;
+\begin{enumerate}
+\item maintaining ideal drone altitude,
+\item maintaining rover-drone proximity within sensor range, then
+\item the original item-gathering objective.
+\end{enumerate}
+Once 20\% of the population achieves each stepping stone objective, it is replaced by the next objective.
+Novelty-based selection compares 4-D vector representations of each team behavior to behaviors encountered previously during evolutionary search, tending to favor individuals that generate novel team behaviors \cite{lehman2008exploiting}.
+(In this particular implementation, novelty is weighted evenly with item-gathering performance in determining fitness).
 
-Two loss of fitness gradients \cite{wiegand2003analysis} and convergence to mediocre stable states \cite{panait2010theoretical}.
+Incremental co-evolution and novelty-based selection both increased the frequency at which successful behaviors evolved under the three more challenging treatment conditions.
+Interestingly, a variant of incremental evolution where drone altitude control and initial search for the rover were bootstrapped using a stationary ground robot performed significantly poorer than incremental co-evolution.
+The authors suggest that suddenly restoring the rover's movement renders the bootstrapped drone capabilities useless (in particular, perhaps, the initial rover-search strategy) landing the system back on square one where the robots do not meaningfully interact.
 
-Four tr
-Cooperative co-evolution succeeds when the
+Clearly, the initial hurdle to the evolution of cooperation --- meaningful interaction between the robots that benefits the item-gathering effort --- is difficult to clear by chance, especially when meaningful interaction between the robots itself is rare.
+Here, Gomes et al. highlight a subtle aspect of the credit assignment problem.
+Even if we have the means to quantify the value of agents' contributions to a successful cooperative episode, we may not be able to quantify the value of an agent's contribution to a \textit{potentially} successful cooperative episode that flops because of non-cooperation by other agents.
+Successful selection for cooperation in a multi-agent system requires an initial spark of viable cooperation, which may arrive rarely if at all without intervention.
