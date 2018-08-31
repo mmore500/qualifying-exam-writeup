@@ -17,17 +17,36 @@ Control for the robots was accomplished through a fully-connected feed-forward a
 Neural net output controls rotation of the left and right motors.
 A fixed neural network topology is enforced; only neural net weights evolve.
 
-Waible et al. compare the evolution of genetically homogenous versus heterogenous teams with individual versus team selection.
-In heterogneous team treatments, teams were populated member-by-member through fitness-weighted random draws of members from the previous generation.
-In homogenous team treatments, teams were populated through clonal multiplication of a single fitness-weighted random draw from members of the previous generation.
+Waibel et al. compare the evolution of genetically homogeneous versus heterogeneous teams with individual versus team selection.
+In heterogeneous team treatments, teams were populated member-by-member through fitness-weighted random draws of members from the previous generation.
+In homogeneous team treatments, teams were populated through clonal multiplication of a single fitness-weighted random draw from members of the previous generation.
 Under team selection, fitness-weighted random draws were conducted by first performing a roulette-wheel draw among previous-generation teams (each team's probability of selection proportional to the mean fitness of its members) followed by an evenly-weighted random draw among the selected team's members.
 Under team selection, fitness-weighted random draws were performed from all individuals in the previous generation, with each individual's probability of selection proportional to its individual fitness.
 
-For the Individual Foraging task, individual and team selection on homogenous teams was exactly equivalent under this particular implementation, and, as expected, yielded champion teams with statistically indistinguishable net foraging performance after 300 generations.
-After adjustments to take into account the greater number of distinct genomes evaluated when non-clonal groups are employed, champion performance under heterogenous team individual selection was also found to be indistinguishable compared to team and individual selection with homogenous teams.
-However, team selection on heterogenous teams yielded much lower champion performance.
-Credit assignment problems even when cooperation not involved TODO
+For the Individual Foraging task, individual and team selection on homogeneous teams was exactly equivalent under this particular implementation, and, as expected, yielded champion teams with statistically indistinguishable net foraging performance after 300 generations.
+After adjustments to take into account the greater number of distinct genomes evaluated when non-clonal groups are employed, champion performance under heterogeneous team individual selection was also found to be indistinguishable compared to team and individual selection with homogeneous teams.
+However, team selection with heterogeneous team make-up yielded much lower champion performance.
+Waibel et al. suggest that selection inefficiencies were to blame; simply put, high quality individual genomes are more difficult to detect and select for (and low quality individual genomes are more difficult to detect and select against) when selection only takes place for or against arbitrary lumped-together sets of genomes (which likely contain both high quality and low quality solutions);
+good quality genomes still \textit{tend} to leave more offspring than poor quality genomes because they \textit{tend} to be part of better teams by means of their own quality, but the selective signal is nonetheless weakened.
+These results show that credit assignment problems can emerge even in the absence of direct agent-to-agent cooperation by simply adding noise to the selective process.
 
-For the Cooperative Foraging Task
+For the Cooperative Foraging Task, homogeneous teams significantly outperformed heterogeneous teams under both the individual and team selection treatments.
+(The individual and team selection treatments were functionally identical in this case, as the large token haul was shared evenly among team members in either case).
+Next, the authors test the hypothesis that credit assignment issues caused the poorer performance of heterogeneous teams by performing a heterogeneous individual-selection run where fitness points from each large token were directly allocated to the two robots that collected it.
+Performance of heterogeneous teams increased with removal of credit-assignment ambiguities, but still lagged behind the performance of homogeneous teams.
+Waibel et al. suggest that evolution of heterogeneous lagged behind evolution of homogeneous teams because the search space of possible heterogeneous cooperative behaviors outstrips the search space of possible homogeneous team behaviors; when a unique controller operates each agent many more configurations are possible so finding a good solution --- workable configurations for \textit{all} team members --- becomes more difficult.
+It appears that selection inefficiencies due to credit assignment problems were partly, but not completely, to blame for the poor performance of heterogeneous teams; evolving heterogeneous teams also simply poses a more complex optimization challenge.
 
-Finally, for the Altruistic Cooperative Foraging Task,
+Finally, in the Altruistic Cooperative Foraging Task, the credit assignment problem emerged once again.
+In this task, two options were presented to agents:
+\begin{itemize}
+\item cooperate in work that benefits the group (i.e., collecting large tokens with fitness points shared among group members), or
+\item defect to perform tasks that benefit itself (i.e., collecting small tokens with fitness points assigned to the collector).
+\end{itemize}
+Every individual agent stands to make out the best when collecting small tokens for itself while accepting a share of the fitness points brought in from harvest of large tokens by \textit{other} agents.
+However, the collective collects the least food overall when all agents focus on collecting small tokens for themselves.
+So, under individual selection, selective pressure occurs for defection and evolved team performance is poor.
+Team selection does solve the issue of incentivized defection, but suffers from the same selective inefficiency (i.e., can't detect and select for/against good /bad genomes that are grouped onto the same team) touched on earlier.
+Waibel demonstrate that, with individual selection on heterogeneous groups, assigning points for large token collection to the responsible pair of agents solves the credit assignment issue causing defection under individual selection, showing that preferential foraging for large tokens evolves under these conditions (and that preferential foraging for small tokens takes back over if large tokens are made a public good again).
+Reformulating fitness scoring to directly reward agents for cooperative actions that benefit the collective (like foraging big tokens) can sometimes skirt the credit assignment problem.
+However, it is possible to imagine scenarios --- like scouting in a multi-agent foraging task (is the scout still performing an important task even if it never detects any food objects for other agents to exploit? does the answer depend on how many other agents are scouting?) --- where such reformulations to directly credit heterogeneous agents for the utility of their behavior may not be practical, or even possible.
