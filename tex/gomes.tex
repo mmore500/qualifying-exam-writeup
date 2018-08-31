@@ -1,52 +1,51 @@
 \section{Cooperative coevolution of morphologically heterogeneous robots \cite{gomes2015cooperative}}
 
-Gomes et al. devise a scenario where two robotic agents with different controls and capabilities --- a drone and a ground robot --- cooperate in order to collect items scattered over an unbounded two-dimensional space as quickly as possible.
+Gomes et al. devised a scenario where two robotic agents with different controls and capabilities --- a drone and a ground robot --- cooperate in order to collect items scattered over an unbounded two-dimensional space as quickly as possible.
 The fitnesses of the drone and the ground robot are taken as the number of items collected.
 The drone can detect objects over a wider surface area, but has no mechanism to actually retrieve them.
-The ground robot, in contrast, can pick objects up but can only sense very near objects.
+The ground robot, in contrast, can pick objects up but can only sense nearby objects.
 The ground robot and the drone use upwards- and downwards-facing sensors, respectively, to monitor each other's position.
 These sensors have a limited range and field of view; if the ground robot and drone move too far apart in the arena or the drone flies at excessive altitude, the sensors of each will lose track of the other.
 No communication between agents occurs besides each sensing the other's relative position.
 Both robots are controlled by simple evolving neural controllers using NEAT \cite{stanley2002evolving}.
-In addition to the inputs and outputs described, the drone was able to sense and, in some trials, control its own altitude.
+Both robots had facilities for movement and the drone was able to sense and, in some trials, control its own altitude.
 
 For item placement, the rectangular arena is divided into six distinct rectangular sub-quadrants.
-Then, a single item is deposited at a randomly drawn location within each of the six rectangular sub-quadrant.
-This ensures that the items are somewhat evenly distributed while leaving the exact positions of the objects variable.
+Then, a single item is deposited at a randomly drawn location within each of the six rectangular sub-quadrants.
+This process ensures that the items are somewhat evenly distributed while letting the exact positions of the objects vary.
 
-Gomes et al. use a cooperative co-evolution approach to simultaneously evolve controllers for the drone and the ground robot.
-Separate populations of drone controllers and ground robot controllers are initiated.
-For the first generation, each ground robot controller is evaluated with a random drone controller and vice versa.
-Then, for subsequent generations, each ground robot controller is evaluated with the best-performing drone controller from the previous generation and each drone controller is evaluated with the best-performing ground robot controller from the previous generation.
+Gomes et al. used a cooperative co-evolution approach to simultaneously evolve controllers for the drone and the ground robot.
+Separate populations of drone controllers and ground robot controllers were initiated.
+For the first generation, each ground robot controller was evaluated with a random drone controller and vice versa.
+Then, for subsequent generations, each ground robot controller was evaluated with the best-performing drone controller from the previous generation and each drone controller was evaluated with the best-performing ground robot controller from the previous generation.
 This cooperate co-evolution method helps to detangle the credit assignment problem by ensuring that the fitness gradient (i.e., how fitness differs between agents) depends primarily on agents' own actions.
-Intuitively, because each agent has the same best-available partner during its evaluation, in the case where agent A's team only collects two items but agent B's team collects five items the difference between the teams responsible for the performance discrepancy is agent A versus agent B.
-Holding the other elements of the multi-agent system constant while evaluating agents from a single population helps us isolate credit --- or blame --- to the agents we're evaluating.
+Intuitively, because every agent in a particular subpopulation has the same best-available partner during its evaluation, in the case where agent A's team only collects two items but agent B's team collects five items the difference between the teams responsible for the performance discrepancy is agent A versus agent B.
+Holding the other elements of the multi-agent system constant while evaluating agents from a single population helps us isolate credit --- or blame --- to the agents we're currently evaluating.
 
 The cooperative co-evolution approach succeeds consistently in a baseline treatment (``Fix-Tog'') where the ground robot and drone are start at the same location and the drone's altitude is fixed (optimally for sensing).
-In this treatment, nascent cooperation between the the drone and ground robot can take hold essentially immediately at the beginning in the evolutionary process and, subsequently, be refined.
+In this treatment, nascent cooperation between the the drone and ground robot can take hold immediately at the beginning in the evolutionary process and, subsequently, be refined.
 
 Three other treatments are studied:
 \begin{enumerate}
 \item the drone's altitude is fixed and the drone and ground robot begin separated out of sensor range (``Fix-Sep''),
-\item the drone is allowed to control its own altitude (it can lose contact with the robot by flying too high or flying too low, leaving the robot's field of view) and the ground robot and drone start at the same location (``Var-Tog''), and
+\item the drone is allowed to control its own altitude (it can lose contact with the robot by flying too high or flying too low) and the ground robot and drone start at the same location (``Var-Tog''), and
 \item the drone controls altitude and the ground robot and drone begin separated out of sensor range (``Var-Sep'').
 \end{enumerate}
-Each variable represents a potential hurdle that must be cleared before meaningful cooperation can take hold.
+Altitude control and separate start locations represent potential hurdles that must be cleared before meaningful cooperation can take hold.
 If the drone and robot start out of range, they must evolve to locate each other before they can begin cooperating.
-If the drone can control its own altitude, it must evolve to regulate its own altitude (and fly at an appropriate altitude for cooperation).
+If the drone can control its own altitude, it must evolve to regulate its own altitude (and fly at an appropriate altitude for cooperation) before cooperation can evolve.
 Under each of these treatments, fully successful behaviors (i.e., the team collects all six items in the allocated time) evolve in some, but not most, evolutionary runs.
 
-Gomes et al. determine convergence to mediocre stable states where the robots do not cooperate as the root of challenges faced evolving effective cooperative behavior under the three more challenging treatments \cite{panait2010theoretical}.
+Gomes et al. determine convergence to mediocre stable states where the robots do not cooperate as the root of challenges faced evolving effective cooperative behavior under these three more challenging treatments \cite{panait2010theoretical}.
 They arrive at this diagnosis after noting that, in runs where successful behaviors are achieved, a significantly greater diversity of behaviors are explored.
-(Specifically, the mean pairwise difference between all team behaviors, represented as 4-D vectors, encountered during the evolutionary run is significantly greater in runs where successful behaviors were achieved.)
 In order to break evolution out of the stable state traps observed in the three more challenging treatments, Gomes et al. try incremental evolution and novelty-based selection.
-Applying incremental co-evolution, team selection is sequentially performed for;
+Applying incremental co-evolution, team selection is sequentially performed for
 \begin{enumerate}
 \item maintaining ideal drone altitude,
 \item maintaining rover-drone proximity within sensor range, then
 \item the original item-gathering objective.
 \end{enumerate}
-Once 20\% of the population achieves each stepping stone objective, it is replaced by the next objective.
+Once 20\% of the population achieves each stepping stone objective the next objective kicks in.
 Novelty-based selection compares 4-D vector representations of each team behavior to behaviors encountered previously during evolutionary search, tending to favor individuals that generate novel team behaviors \cite{lehman2008exploiting}.
 (In this particular implementation, novelty is weighted evenly with item-gathering performance in determining fitness).
 
@@ -54,7 +53,7 @@ Incremental co-evolution and novelty-based selection both increased the frequenc
 Interestingly, a variant of incremental evolution where drone altitude control and initial search for the rover were bootstrapped using a stationary ground robot performed significantly poorer than incremental co-evolution.
 The authors suggest that suddenly restoring the rover's movement renders the bootstrapped drone capabilities useless (in particular, perhaps, the initial rover-search strategy) landing the system back on square one where the robots do not meaningfully interact.
 
-Clearly, the initial hurdle to the evolution of cooperation --- meaningful interaction between the robots that benefits the item-gathering effort --- is difficult to clear by chance, especially when meaningful interaction between the robots itself is rare.
+The initial hurdle to the evolution of cooperation --- meaningful interaction between the robots that benefits the item-gathering effort --- can be difficult to clear by chance, especially when meaningful interaction between the robots itself is rare.
 Here, Gomes et al. highlight a subtle aspect of the credit assignment problem.
 Even if we have the means to quantify the value of agents' contributions to a successful cooperative episode, we may not be able to quantify the value of an agent's contribution to a \textit{potentially} successful cooperative episode that flops because of non-cooperation by other agents.
 Successful selection for cooperation in a multi-agent system requires an initial spark of viable cooperation, which may arrive rarely if at all without intervention.

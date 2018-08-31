@@ -1,28 +1,27 @@
 \section{Multi-Agent Systems}
 
-The term multi-agent system (MAS) describes a scenario where a behavior manifests, or in more application-driven context a goal is accomplished, via a collection of interacting autonomous entities \cite{ferber2003agents}.
-Although each entity only has available to it just a subset of relevant information and possesses only humble computational and/or physical capabilities, their cooperation can yields sophisticated and useful outcomes  \cite{panait2005cooperative}.
-An ant colony is a classic instance of a multi-agent system.
-Through many interactions between individual ants (including those mediated by stigmergic mechanisms), the colony arrives at collective decisions --- for example, discerning the richer of two food sources \cite{beckers1993modulation} or depositing a certain proportion of the workforce into living bridges that shortcut obstacles \cite{graham2017optimal} --- that optimize the inflow of foraged food.
+The term multi-agent system (MAS) denotes a scenario where a behavior manifests, or in more application-driven contexts a goal is accomplished, via a collection of interacting autonomous entities \cite{ferber2003agents}.
+Although each entity only has access to a subset of relevant information and possesses only humble computational and/or physical capabilities, cooperation between agents can yield sophisticated and useful outcomes  \cite{panait2005cooperative}.
+An ant colony is a classic instance of a multi-agent system \cite{parunak1997go}.
+Interactions between individual ants (including those mediated by stigmergic mechanisms) cause the colony to arrive at collective decisions --- for example, discerning the richer of two food sources \cite{beckers1993modulation} or depositing a certain proportion of the workforce into living bridges that shortcut obstacles \cite{graham2017optimal} --- that optimize the inflow of foraged food.
 
-The multi-agent system paradigm can provide useful solutions to human problems, too.
+The multi-agent system paradigm can provide useful solutions to engineering problems, too.
 For example, swarm robotics, in which groups of autonomous machines unite to accomplish difficult tasks, might save lives through search and rescue after a disaster, preserve natural landscapes through early detection of forest fires, or protect critical infrastructure like power lines or pipelines through real-time monitoring or even emergency patch jobs.
 For such applications, swarm robotics is hoped to be be simpler, cheaper, more robust, and more capable than existing approaches \cite{tan2013research}.
 Even problems that, at first blush, do not necessarily evoke an intuitive notion of teams of cooperating agents, like the traveling salesman problem \cite{dorigo1997ant, bnasin2013applications} or the set cover problem \cite{rahoual2002parallel,ren2010new}, can be fruitfully attacked by algorithms inspired by multi-agent systems.
 
-Finally, the multi-agent system paradigm provides explanatory, in addition to practical, value.
-A wide variety of natural systems can be modeled as multi-agent systems.
-Such models find use across many disciplines, from sociology \cite{sawyer2003artificial}, to biology \cite{perna2012individual, amigoni2007multiagent}, and even physics \cite{vicsek1995novel}.
+Multi-agent models provide explanatory value, too.
+Multi-agent models find use in context ranging from sociology \cite{sawyer2003artificial}, to biology \cite{perna2012individual, amigoni2007multiagent}, and even physics \cite{vicsek1995novel}.
 
 \section{Heterogeneity}
 
 Heterogeneity in multi-agent systems can be understood by contrast to its opposite: absolute homogeneity.
-A completely homogeneous multi-agent system --- where all agents are exactly symmetrically equivalent to each-other in terms of configuration, state, connectivity (e.g., a ring structure) without stochasticity or infinite compute time --- might be imagined something like the experience of standing in between two mirrors.
+A completely homogeneous multi-agent system --- where all agents are exactly symmetrically equivalent to each-other in terms of configuration, state, and connectivity (e.g., a ring structure) and both stochasticity and infinite compute time are excluded --- might be imagined something like the experience of standing in between two mirrors.
 Essentially, because at each moment every agent is exactly equivalent to every other agent with respect to the update rule (be it continuous or discrete), the agents remain exactly equivalent in perpetuity.
 This unshakable symmetry fundamentally affects the capabilities of a multi-agent system.
-It has been proven by Angluin, for example, that the leader election problem (in which a set of agents must converge to a state where a single agent is uniquely designated) cannot be solved under such conditions \cite{angluin1980local,banda2015configuration}.
+For example, Angluin proved that the leader election problem (in which a set of agents must converge to a state where a single agent is uniquely designated) cannot be solved under such conditions \cite{angluin1980local,banda2015configuration}.
 
-Relaxing restrictions of perfect determinism or exact initial equivalence in configuration, state, or connectivity, heterogeneity may be introduced --- and exploited.
+Relaxing restrictions of perfect determinism or of exact initial equivalence in configuration, state, or connectivity, heterogeneity may be introduced --- and exploited.
 If each agent holds a unique identifier --- relaxing the assumption of initial equivalence in configuration --- then a leader can readily be elected on the merit of greatest or least identifying value \cite{frederickson1987electing}.
 Bandas et al. demonstrate, in the same vein, how cellular automata can sometimes (not always) reach consensus under the condition of non-uniform state initialization \cite{banda2015configuration} and Itai et al. analyze how stochasticity may be exploited to elect a unique leader among a ring of uniform processors \cite{itai1981symmetry}.
 With respect to heterogeneous connectivity, Antonoiu et al. report a method for deterministic designation of a unique node in a tree graph \cite{antonoiu1996self}.
@@ -30,16 +29,16 @@ With respect to heterogeneous connectivity, Antonoiu et al. report a method for 
 At least \textit{some} heterogeneity is a common feature of both agent-based models of natural phenomena and agent-based optimization methods.
 In \cite{atodd2015quantitative}, where agent-based models were applied to stem cell differentiation patterns in embryoid bodies, heterogeneity between agents was incorporated through stochasticity as well as non-uniform initialization of internal state and connectivity (i.e., spatial positioning, which determines local interactions).
 In \cite{perna2012individual}, where agent-based models were applied the pheromone-mediated foraging behavior of Argentine ants, stochasticity and connectivity (i.e., spatial positioning, which determines local interactions) ensured heterogeneity.
-Finally, in \cite{fayeez2017h}, where optimizations of large traveling salesman problem instances are attempted, homogeneity is busted by, among other factors, agent configuration (specifically, random initialization of the behavioral parameters that determine each ant's proclivity towards exploration versus exploitation).
+Finally, in \cite{fayeez2017h}, where optimizations of large instances of the traveling salesman problem are attempted, homogeneity is broken by, among other factors, agent configuration (specifically, random initialization of the behavioral parameters that determine each ant's proclivity towards exploration versus exploitation).
 
-Although conditions that break perfect symmetry are common in multi-agent systems of practical and scientific interest, they are also qualitatively diverse between systems.
+Although conditions that break perfect symmetry are common in multi-agent systems of practical and scientific interest, these conditions are also qualitatively diverse between systems.
 
 \section{Genetic Heterogeneity}
 
 Common techniques to optimize the emergent behavior of a multi-agent system primarily fall under the umbrella of reinforcement learning or stochastic search; among methods in the latter category, evolutionary computation enjoys significant popularity \cite{panait2005cooperative}.
-Evolutionary computation centers around an iterative optimization loop where a genetic representations of a set of candidate solutions are successively perturbed by mutational and recombinational operators then filtered based on a performance metric \cite{fogel2000evolutionary}.
+Evolutionary computation centers around an iterative optimization loop where genetic representations of a set of candidate solutions are successively perturbed by mutational and recombinational operators then filtered based on a performance metric \cite{fogel2000evolutionary}.
 Evolution-inspired methods imply a straightforward approach to inject configuration heterogeneity into multi-agent systems: genetically.
-That is, multi-agent systems composed of interacting agents with independent genetic bases, and thus potentially different behaviors, instead of identically configured (i.e., clonal) agents.
+That is, multi-agent systems composed of interacting agents with independent genetic makeups, and thus potentially different behaviors, instead of identically configured (i.e., clonal) agents.
 
 The potential benefits of genetic heterogeneity, or more broadly speaking configuration heterogeneity, largely fall under the theme of specialization.
 In some multi-agent scenarios, task specialization between agents benefits collective functionality.
@@ -48,14 +47,13 @@ They find that heterogeneous teams of evolved agents outperform homogeneous team
 It should be noted, though, that task specialization in evolving multi-agent systems can be accomplished by means besides genetic heterogeneity;
 genetically homogeneous agents may evolve to realize behavioral differentiation by means of agent state \cite{ferrante2015evolution}.
 
-The issue of controller specialization is magnified in systems with heterogeneous agent capabilities, like ensembles of ground-based robots and aerial drones working in concert \cite{gomes2015cooperative, mathews2012supervised}, or even just agent-specific peculiarities, like manufacturing deviations in unit-to-unit hardware specifications \cite{pugh2007parallel, duarte2016evolution}.
+The need for controller specialization is magnified in systems with heterogeneous agent capabilities, like ensembles of ground-based robots and aerial drones working in concert \cite{gomes2015cooperative, mathews2012supervised}, or even just agent-specific peculiarities, like manufacturing deviations in unit-to-unit hardware specifications \cite{pugh2007parallel, duarte2016evolution}.
 In these scenarios, though, genetic heterogeneity is not the only possible remedy;
-plasticity, making controller state responsive to the agent's hardware in order to achieve compensatory adjustments to behavior, has also been demonstrated to identical controllers deployed across heterogeneous hardware to achieve objectives requiring cooperation between agents \cite{tuci2008evolving}.
+plasticity, making controller state responsive to the agent's hardware in order to achieve compensatory adjustments to behavior, has also been demonstrated to allow identical controllers deployed across heterogeneous hardware to achieve objectives requiring cooperation between agents \cite{tuci2008evolving}.
 
-Central to attempting to accomplish evolution of genetically heterogeneous cooperating groups is the credit-assignment problem.
+Key to attempts to evolve genetically heterogeneous cooperating groups is the so-called credit-assignment problem.
 When the evolutionary objective is a group-level attribute, nailing down the value of individual contributions is not necessarily straightforward \cite{panait2005cooperative}.
 Even when selecting on the basis of group-level performance, an individual agent's reproductive success depends on the composition of the group it lands in; because ``good'' individuals can end up in ``bad'' groups and vice versa, the direct link between individual performance and selection is weakened \cite{waibel2009genetic}.
-Circumventing this problem by redefining individuality with respect to the evolutionary algorithm as the multi-agent collective, in effect a evolving a population of ``team genomes'' \cite{waibel2009genetic}, works well in some cases \cite{miconi2003evolving,bongard2000legion} but can become impracticable at scale due to a prohibitively large search space (i.e., too many parameters) \cite{agogino2008efficient}.
 
 This writeup will describe, compare, and contrast three approaches to the credit-assignment problem:
 \begin{itemize}
