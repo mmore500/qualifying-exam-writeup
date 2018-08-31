@@ -1,10 +1,37 @@
 \section{Coevolution of heterogeneous multi-robot teams \cite{knudson2010coevolution}}
 
 Knudson et al. focus on a multi-rover scouting task, which seems to have been chosen in part because it requires coordination between individual robots while allowing for relatively straightforward assessment of the impact of an individual robot on overall team performance.
-The task centers around the close-range observation of a set of points of interest, a scenario with parallels to, among other applications, hunting for resources on extraterrestrial surfaces like Mars.
-A close-range observation is considered to have occurred if a robot passes within a threshold distance of the point of interest.
-Coordination comes into play because certain goldilocks numbers of robots must observe a point; too few, and the point isn't characterized in adequate detail (or with adequate certainty), too many, and rover time --- which could be applied to characterizing other points of interest --- is wasted.
-This with absolute step-wise cutoffs and more continuous slopes on payout
-Most of these points remain static between evaluations, but a subset of points change in order to discourage behavioral overfitting.
+The task centers around the close-range observation of a set of fifty points of interest, a scenario with parallels to, among other applications, hunting for resources on extraterrestrial surfaces like Mars.
+Most of these points remain static between evaluations, but a subset of points change evaluation-to-evaluation in order to discourage behavioral overfitting.
 
-The introduce blue and green robots, which have complementary sensing capabilities and for a point to be adequately characterized must be visited by both types of robots.
+A close-range observation is considered to have occurred if a robot passes within a threshold distance of the point of interest.
+Coordination comes into play because a goldilocks number of robots must observe a point; too few, and the point isn't characterized in adequate detail (or with adequate certainty), too many, and rover time --- which could be applied to characterizing other points of interest --- is wasted.
+
+Scouting teams consist of forty robots driven by heterogeneous neural network controllers.
+Each controller takes input from sets of four robot-density and four point-of-interest-density sensors that characterize pie-slice quadrants relative to the current heading of the robot.
+Sensor input is mapped through a fully-connected layer to a pair of outputs that determine velocity of the robot relative to its current heading.
+only weights of the network evolve.
+
+Knudson et al. compare three approaches to calculating agent fitness:
+\begin{enumerate}
+\item system performance (i.e., total count of points of interest explored by the forty robot team),
+\item own performance (i.e., the number of points of interest the agent observed at close range), and
+\item difference evaluation (i.e., the amount system performance \textit{decreases} when excluding close-range observations made by a particular agent; intuitively, the agent's contribution to system perfomance).
+\end{enumerate}
+It should be noted that optimizing each robot's ``own performance'' doesn't translate to maximizing ``system performance'' because it doesn't imply that each point will be visited by the goldilocks number of robots.
+Note also, that the ``difference evaluation'' fitness metric somewhat approximates, but doesn't exactly measure, the difference between system performance with and without the presence of the agent.
+As the simulation is not re-run completely excluding the agent, the effects of the agent on the behavior of on other agents (i.e., via their robot-density sensors) remains.
+For this reason, the ``difference evaluation'' might potentially figure only a partial accounting of an agent's contribution to system performance (i.e., by influencing other robots).
+
+In all experiments, genetically heterogeneous teams are evolved;
+for each of the forty team positions, a separate sub-population of ten individuals is maintained.
+The different approaches to calculating agent fitness are explored across several task variants:
+\begin{enumerate}
+  \item with homogeneous hardware components (robot hardware is identical among team members),
+  \item and with heterogeneous hardware components (robots are equipped with one of two types of complementary point-of-interest characterization tools; both tool types be brought within close-range observation distance of a point of interest in order to fully characterize it).
+\end{enumerate}
+In nearly all cases, the best quality scouting teams evolve when difference evaluation is used to determine agent fitness.
+In one case where a large number of robots is required to observe a point of interest, difference evaluation fails to clearly outperform the other two fitness functions because successful characterizations of points of interest become rare enough that most robots don't contribute to system performance, causing loss of the selective gradient.
+Providing some system-level reward for observations of points of interest by smaller groups of robots restored the selective gradient and improved the performance of difference evaluation.
+
+The difference evaluation metric allows for
