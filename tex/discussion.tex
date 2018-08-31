@@ -1,17 +1,36 @@
 \section{Discussion}
 
-genetically homogenous groups == indirect encoding where symmetry between agents can be exploited
-+ can we come up with another indrect encoding that still allows some amount of exploitation of symmetry? (e.g., some sharing of genetic configuration between agents)
-+ add an input for hardware type
+Addressing credit assignment ambiguity is central to evolving genetically heterogeneous groups.
+Gomes et al., try to solve credit assignment by guaranteeing evaluation with a good cooperating partner;
+thus, responsibility for the partnership's success or failure rests with the evaluated individual.
+The process requires jump start; where cooperation is unlikely to TODO
+Waibel et al., remove credit assignment ambiguity by directly rewarding individuals for their own contributions to group foraging instead of sharing group foraging rewards evenly between group members.
+This approach works well, but in principle cannot account for potentially important indirect contributions to group foraging success like guiding other agents to food pucks.
+Knudson et al., suggest the more generalized notion of the difference metric, where individual fitness is based how much the individual's presence in the group increases group performance.
+Unless shortcuts to figure individual contributions can be devised, however, this approach might be inefficient because it would require many re-evaluations of the collective, each sans a particular individual member.
+The particular shortcut employed by Knudson et al. works analogously to the direct large-puck credit assignment demonstrated by Waibel et al.
+Thus, this approach faces a trade-off between efficiency and accounting for indirect contributions to group performance.
 
-what are the benefits of genetic het?
-The potential benefits of genetic heterogeneity related to exploiting the potential benefits of configuration heterogeneity.
-LATER, however, there are other potential benefits WRT the process of evolution: open-endedness and diversity preservation etc.
-However, due to the evolutionary algorithm, there are implications of this type of heterogeneity of configuration with respect to evolution because the
-Genetic heterogeneity in natural evolution is facilitated and emerges in sophisticated ways through symbiotic relationships, transitions of individuality, vertical transmission, group selection, and ecological dynamics.
-However, looking beyond just the immediate functionality of the genetically heterogeneous collective, some more nuanced benefits in terms of the evolutionary process might be appreciated.
+Another approach to iron out credit-assignment ambiguity, not directly addressed by the papers reviewed, is to establish a ``team genome,'' essentially redefining the evolutionary unit of individuality as heterogeneous ensembles of agents \cite{miconi2003evolving}.
+Tying together the evolutionary fates of team members helps address the problem of inefficient selection observed in heterogeneous-team, group-selection experiments in \cite{waibel2009genetic};
+poorly-performing agents can no longer drift from group to group, piggybacking off of the competence of the other agents.
+However, as evident in \cite{waibel2009genetic}, genetically homogeneous groups can sometimes out-evolve such heterogeneous groups because of the much larger dimensionality the heterogeneous behavior space.
+The clonal generation of a homogeneous group from a single genome might be interpreted as an indirect genetic encoding that exploits symmetries \cite{clune2011performance}.
+An indirect encoding that does not enforce completely identical agent configuration but instead allows for subsets of the team to be configured identically or some (but not all) elements of agent configuration to be determined uniformly among team members might ameliorate this issue \cite{bongard2000legion}.
 
-+ don't have to manually determine composition of cooperating teams
+Problem-specific knowledge is a common theme of strategies designed to overcome credit assignment ambiguity.
+Waibel et al. and Knudson et al. exploit problem-specific
 
-implicitly evolve as part of a team genome \cite{bongard2000legion}
-+ vertical transmission
+
+Devising strategies to overcome credit assignment ambiguity, we should take care to note how our assumptions about how agents should cooperate and groups should function.
+How to get more general when we don't have a-priori information or don't know what type of cooperation to expect \cite{kernbach2008symbiotic,baele2009open}?
+Cooperative group dynamics between Genetic heterogeneity in natural evolution is facilitated and emerges in sophisticated ways through symbiotic relationships, transitions of individuality, vertical transmission, group selection, and ecological dynamics \cite{vostinar2017suicide}.
+
+
+In both of these cases, both of these methods exploit problem-specific shortcuts that make tabulation of contribution to the group good straightforward
+In more difficult scenarios, such tabulations may not be straightforward such as something like cheerleaders or coaches on the sidelines.
+
+Assumptions about how many agents should be part of a group .
+
+An important question to consider when trying to address the credit assignment problem is how much manual design is required.
+Gomes et al., but have to decide on the types of cooperators beforehand
