@@ -52,15 +52,7 @@ The issue of controller specialization is magnified in systems with heterogeneou
 In these scenarios, though, genetic heterogeneity is not the only possible remedy;
 plasticity, making controller state responsive to the agent's hardware in order to achieve compensatory adjustments to behavior, has also been demonstrated to identical controllers deployed across heterogeneous hardware to achieve objectives requiring cooperation between agents \cite{tuci2008evolving}.
 
-Although in principle genetic heterogeneity maps intuitively onto the problem of agent specialization, especially in cases with underlying differences in agent hardware, actually evolving genetically heterogeneous cooperating groups to achieve a desired group behavior is nontrivial, in particular with respect of the question of how selection should operate.
-Should a single population of individuals be evolved, with fitness for each evaluated by group performance with subsets of its peers?
-How should such fitness-evaluation groups be composed to ensure compatible and complete sets of specialists?
-Should fitness be determined on the basis of individual attributes instead?
-How should such fitness measures relate to group performance?
-Should diversity-maintenance or speciation mechanisms be introduced in order to prevent losses of lineages corresponding to certain roles and, when crossover is employed, prevent hodgepodge offspring from matings between different specialists?
-Should the long-term evolutionary fates of sets of individuals instead be linked together, with successful teams reproducing together on the merit of their group performance --- each contributing an offspring to a duplicate group?
-
-Central to many of the questions regarding the evolution of genetically heterogeneous cooperating groups is the credit-assignment problem.
+Central to attempting to accomplish evolution of genetically heterogeneous cooperating groups is the credit-assignment problem.
 When the evolutionary objective is a group-level attribute, nailing down the value of individual contributions is not necessarily straightforward \cite{panait2005cooperative}.
 Even when selecting on the basis of group-level performance, an individual agent's reproductive success depends on the composition of the group it lands in; because ``good'' individuals can end up in ``bad'' groups and vice versa, the direct link between individual performance and selection is weakened \cite{waibel2009genetic}.
 Circumventing this problem by redefining individuality with respect to the evolutionary algorithm as the multi-agent collective, in effect a evolving a population of ``team genomes'' \cite{waibel2009genetic}, works well in some cases \cite{miconi2003evolving,bongard2000legion} but can become impracticable at scale due to a prohibitively large search space (i.e., too many parameters) \cite{agogino2008efficient}.
